@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <h1> Trabalho de (Diogo Castanho) 42496 - SVG </h1>
+
+      <style>
+
+        .box{
+          margin: 50px;
+          width: 896px;
+          height: 800px;
+          background-image: url('media/fundo_1.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: #FFFFFF;
+
+        }
+      </style>
+    </head>
+  <body>
+    <div class="box">
+      <svg width="896" height="800"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlinkZ">
+       <!-- fundo -->
+        <g>
+            <!-- montanhas -->
+            <path stroke = "SaddleBrown" fill = "rosybrown" stroke-width="4" stroke-opacity = "0.6" d="
+                M 0 400
+                C 250 0 300 600 460 300
+                Q 650 0 900 350
+                L 900 800
+                L 0 800
+                L 0 400 "/>
+        </g>
+
+
+        <g id = "passaro" transform="translate(-100 ,0)scale(0.150,0.150) rotate(180, 500, 500)">
+            <!-- passaro companheiro translate-->
+            <path stroke = "black" fill="black" d="
+                M 400 450
+                L 410 445
+                Q 410 430 460 425
+                Q 456 415 460 410
+                Q 490 360 600 320
+                L 560 400
+                L 580 420
+                L 630 418
+                L 710 400
+                L 650 430
+                L 720 450
+                L 630 460
+                L 590 480
+                L 570 510
+                L 620 600
+                L 470 520
+                Q 440 495 450 480
+                Q 415 470 410 455
+                L 400 450
+              "/>
+
+              <animateMotion dur="4s" repeatCount="indefinite" rotate="auto">
+                 <mpath xlink:href="#path2"/>
+              </animateMotion>
+
+        </g>
+
+
+       <path id="path1" fill="none" stroke="none" d="
+             M 850 720
+             Q 780 690 720 690
+             Q 600 650 370 700
+             Q 270 670 150 700
+             Q 80 685 20 700
+             "/>
+
+       <path id="path2" fill="none" stroke="none" d="
+            M 800 320
+            Q 650 250 350 300
+            Q 200 320 0 320
+            "/>
+
+        <!-- bicicleta completa e personagem -->
+        <g id = "personagem" transform="translate(-234.4, -182.8) scale(0.5,0.5) rotate(180, 500, 500)">
+          <!-- pneus -->
+
+            <!--pneu esquerdo-->
+            <circle cx="550" cy="695" r="60" stroke="dimgray" stroke-width="3" fill="grey" />
+            <circle cx="550" cy="695" r="40" stroke="dimgray" stroke-width="3" fill="rosybrown" />
+
+            <!--pneu direito-->
+            <circle cx="780" cy="700" r="60" stroke="dimgray" stroke-width="3" fill="grey" />
+            <circle cx="780" cy="700" r="40" stroke="dimgray" stroke-width="3" fill="rosybrown" />
+
+
+            <!--perna direita-->
+            <path stroke = "darkgoldenrod" stroke-width="3" fill="goldenrod" d="
+
+              M 650 560
+              L 625 577
+              Q 620 585 630 595
+              L 646 612
+              L 670 600 "/>
+
+
+            <!--meio contrária-->
+            <circle cx="690" cy="635" r="15" stroke = "white" fill = "white" />
+
+            <!--pe direito-->
+            <path stroke = "darkblue" stroke-width="3" fill="blue" d="
+              M 695 660
+              L 722 650
+              L 710 630 "/>
+
+            <!--bicicleta estrutura-->
+            <path stroke = "none" fill = "greenyellow" d="
+                M 543 695
+                Q 550 700 555 695
+                L 570 615
+                L 665 700
+                L 785 700
+                Q 790 695 781 688
+                L 680 688
+                L 725 610
+                L 713 607
+                L 667 685
+                L 573 600
+                L 575 590
+                L 563 587
+                L 543 695 "/>
+
+
+            <!-- completa estrutura bicicleta-->
+            <path stroke = "none" fill = "greenyellow" d="
+                M 573 600
+                L 710 620
+                L 705 633
+                L 570 612
+                L 573 610 "/>
+
+            <!-- termina estrutura bicicleta-->
+            <path stroke = "none" fill = "greenyellow" d="
+                M 715 625
+                L 786 693
+                L 770 693
+                L 707 635
+                L 715 625 "/>
+
+            <!--banco--->
+            <path stroke = "black" stroke-width ="3" fill = "black" fill-opacity = "0.90" stroke-opacity = "0.9" d="
+                M 700 607
+                L 730 610
+                Q 757 602 740 585
+                L 715 584
+                L 700 607 "/>
+
+
+            <!--pedal--->
+            <ellipse cx="670" cy="700" rx="18" ry="6" stroke="black" stroke-width="3" fill="black" fill-opacity = "0.90" stroke-opacity = "0.9"
+                transform = "rotate(163, 670, 700)" />
+
+
+            <!--volante--->
+            <path stroke="dimgray" stroke-width="3" fill="grey" d="
+
+              M 550 585
+              L 576 589
+              Q 584 585 577 577
+              L 560 574
+              L 550 585 "/>
+
+
+            <!--pe esquerdo--->
+            <path stroke = "darkblue" stroke-width="3" fill="blue" d="
+
+              M 645 704
+              L 690 690
+              Q 700 685 685 670
+              L 662 677
+              L 645 688
+              L 645 704 "/>
+
+
+            <!--meia esquerda--->
+            <path stroke = "lightgrey" stroke-width="3" fill="white" d="
+
+              M 683 669
+              L 685 658
+              L 660 658
+              L 663 675 "/>
+
+
+            <!--perna esquerda-->
+            <path stroke = "goldenrod" stroke-width="3" fill="gold" d="
+              M 684 657
+              L 684 615
+              L 700 600
+              L 670 590
+              L 650 610
+              L 660 656 "/>
+
+
+            <!--calcoes - parte esquerda-->
+            <path stroke = "dimgray" stroke-width="3" fill="darkgrey" d="
+
+                M 700 610
+                L 665 590
+                L 685 565
+                Q 700 520 730 530
+                Q 758 540 735 570
+                L 700 610 "/>
+
+
+            <!--completa calcoes-->
+            <path stroke = "dimgray" stroke-width="3" fill="gray" d="
+
+              M 665 590
+              L 650 555
+              L 660 550
+              L 685 565 "/>
+
+
+            <!--cara-->
+            <path stroke = "goldenrod" stroke-width = "3" fill = "gold" d="
+                M 600 500
+                L 572 501
+                L 565 485
+                Q 548 478 563 470
+                L 560 457
+                L 620 440
+                L 620 500
+                L 600 500 "/>
+
+            <!--olho-->
+            <ellipse cx="540" cy="522" rx="4" ry="6" stroke="black" fill="black"
+                transform = "rotate(-20, 400, 400)" />
+
+            <!--boca-->
+            <path stroke = "palevioletred" fill = "palevioletred" d="
+                M 568 493
+                Q 575 494 578 491
+                Q 575 495 569 497
+
+
+                "/>
+
+            <path stroke = "SaddleBrown" stroke-width="3" d="
+
+                M 565 460
+                Q 570 455 578 458
+
+                "/>
+
+            <!--tronco-->
+
+            <path stroke = "chocolate" stroke-width="3" fill="darkorange" d="
+
+              M 740 534
+              Q 670 475 615 480
+              L 625 520
+              Q 700 605 740 534
+              "/>
+
+            <!--braço-->
+            <path stroke = "goldenrod" stroke-width="3" fill="gold" d="
+
+                M 623 528
+                L 599 523
+                L 595 545
+                L 556 566
+                L 550 585
+                L 615 555
+                L 620 528 "/>
+
+            <!--mao-->
+            <ellipse cx="547" cy="576" rx="16" ry="9" stroke="none" fill="gold" />
+
+            <!--completa volante-->
+            <circle cx="546" cy="579" r="7" stroke="dimgray" stroke-width="3" fill="grey" />
+
+            <!--manga-->
+            <path stroke = "chocolate" stroke-width="3" fill="chocolate" d="
+
+                M 630 500
+                L 625 530
+                L 597 525
+                L 602 495
+                Q 618 480 630 500 "/>
+
+
+            <!--cabelo-->
+            <path stroke = "SaddleBrown" stroke-width="3" fill = "SaddleBrown" d="
+
+              M 610 460
+              Q 622 468 609 480
+              Q 610 485 620 480
+              Q 625 485 635 478
+              Q 645 482 650 472
+              Q 668 460 655 460
+              Q 657 455 655 450
+              Q 648 453 640 450
+              L 610 460 "/>
+
+          <path stroke = "dimgray" stroke-width="1" fill="dimgray" d="
+
+              M 615 464
+              Q 618 475 605 485
+              L 600 460
+              L 595 460
+              L 601 487
+              L 590 503
+              L 594 503
+              L 606 490
+              Q 622 480 620 464 "/>
+
+          <!--capcete-->
+          <path stroke = "royalblue"  stroke-width="3" fill = "cornflowerblue" d="
+
+              M 555 456
+              L 580 450
+              L 596 465
+              L 607 456
+              Q 617 457 618 472
+              L 635 473
+              Q 650 430 610 415
+              Q 553 405 555 456  "/>
+
+
+
+        <animateMotion dur="4s" repeatCount="indefinite" rotate="auto">
+           <mpath xlink:href="#path1"/>
+        </animateMotion>
+
+
+        </g>
+
+        <!-- completa fundo -->
+        <g>
+
+              <!-- chão -->
+              <path stroke = "SaddleBrown" fill = "SaddleBrown" stroke-width ="3" fill-opacity = "0.95" d="
+                  M 50 800
+                  C 140 700 170 800 230 770
+                  C 340 700 370 800 440 770
+                  C 550 710 560 800 620 770
+                  C 700 700 730 800 770 770
+                  Q 830 740 850 800"/>
+
+        </g>
+
+      </svg>
+    </div>
+  </body>
+</html>
