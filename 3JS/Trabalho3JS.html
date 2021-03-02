@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title> Trabalho3JS </title>
+      <h1> Trabalho de (Diogo Castanho) 42496 - 3JS </h1>
+			<style>
+				body
+				{
+          margin: 0%;
+				}
+				canvas
+				{
+					width: 100%;
+					height: 100%;
+				}
+			</style>
+    </head>
+ 	<body>
+		<script src="lib/three.min.js"></script>
+		<script src="lib/OrbitControls.js"></script>
+		<script>
+
+      		var scene = new THREE.Scene();
+      		var camera = new THREE.PerspectiveCamera(55, (window.innerWidth / window.innerHeight), 45, 30000);
+      		var renderer = new THREE.WebGLRenderer();
+
+      		renderer.setSize(window.innerWidth, window.innerHeight);
+      		document.body.appendChild(renderer.domElement);
+
+      		window.addEventListener('change', function()
+      		{
+      			var width = window.innerWidth;
+      			var height = window.innerHeight;
+      			renderer.setSize(width, height);
+      			camera.aspect = width / height;
+      			camera.updateProjectionMatrix();
+
+      		} );
+
+          camera.position.set(-900, -200, -900);
+
+      		controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+          controls.addEventListener('change', renderer);
+
+          controls.minDistance = 1000;
+          controls.maxDistance = 1500;
+
+          ///////////////////////////////////////////////////////////////////////
+
+          var url =
+          [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWLVNdPQ4PXA4EN9Cp3BaWpa7bsWRsFVtHJA&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWLVNdPQ4PXA4EN9Cp3BaWpa7bsWRsFVtHJA&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWLVNdPQ4PXA4EN9Cp3BaWpa7bsWRsFVtHJA&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIbqItWejaufmqVZ5AcBVrW3rEk1ukcxARjA&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWLVNdPQ4PXA4EN9Cp3BaWpa7bsWRsFVtHJA&usqp=CAU",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWLVNdPQ4PXA4EN9Cp3BaWpa7bsWRsFVtHJA&usqp=CAU"
+          ];
+
+      		//////////////////////////////////////////////////////////////////////
+
+          var materials = [];
+
+          for(var i = 0; i < 6; i++){
+            materials.push( new THREE.MeshBasicMaterial({
+              map: new THREE.TextureLoader().load(url[i]),
+              side: THREE.BackSide
+              })
+            );
+          }
+
+      		var geo = new THREE.BoxGeometry(1000,1000,1000);
+      		var material = new THREE.MeshFaceMaterial(materials);
+          var mesh = new THREE.Mesh(geo, material);
+
+      		scene.add(mesh);
+
+      		var ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+          scene.add(ambientLight);
+
+          var lightPoint = new THREE.PointLight(0xffffff, 2.5);
+      		scene.add(lightPoint);
+
+          ////-----CONSTRUÇÃO DAS LETRAS
+
+          /////letra_A
+
+          var letra_A = new THREE.Shape();
+
+          var x = -100;
+          var y = -50;
+
+          letra_A.moveTo(x+400,y+150);
+          letra_A.lineTo(x+370,y+140);
+          letra_A.lineTo(x+375,y+120);
+          letra_A.lineTo(x+410,y+135);
+          letra_A.quadraticCurveTo(x+430,y+110,x+430,y+90);
+          letra_A.lineTo(x+390,y+90);
+          letra_A.lineTo(x+390,y+105);
+          letra_A.lineTo(x+378, y+105);
+          letra_A.lineTo(x+378, y+35);
+          letra_A.quadraticCurveTo(x+380,y+20, x+375,y+5);
+          letra_A.lineTo(x+392,y+5);
+          letra_A.quadraticCurveTo(x+388,y+20, x+390,y+35);
+          letra_A.lineTo(x+390,y+75);
+          letra_A.lineTo(x+427, y+75);
+          letra_A.quadraticCurveTo(x+424, y+40, x+418, y-10);
+          letra_A.lineTo(x+440,y-20);
+          letra_A.bezierCurveTo(x+422, y+25, x+480, y+100, x+400, y+150);
+
+
+          var extrude = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+          var geometry = new THREE.ExtrudeBufferGeometry(letra_A,extrude);
+
+          var material = new THREE.MeshPhongMaterial({color: 0x000080});
+
+          var mesh = new THREE.Mesh(geometry, material);
+
+          scene.add(mesh);
+
+          //////letra_l
+
+          var letra_l = new THREE.Shape();
+
+          letra_l.moveTo(x+310,y+145);
+          letra_l.lineTo(x+285,y+158);
+          letra_l.lineTo(x+285, y+20);
+          letra_l.quadraticCurveTo(x+280, y+5, x+276,y+8);
+          letra_l.lineTo(x+290, y);
+          letra_l.quadraticCurveTo(x+300, y+2, x+300,y+20);
+          letra_l.lineTo(x+300,y+130);
+          letra_l.quadraticCurveTo(x+298, y+135, x+310, y+145);
+
+
+          var extrude1 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+          var geometry1 = new THREE.ExtrudeBufferGeometry(letra_l,extrude1);
+
+          var material1 = new THREE.MeshPhongMaterial({color: 0x0000CD});
+
+          var mesh1 = new THREE.Mesh(geometry1, material1);
+
+          scene.add(mesh1);
+
+
+          //////letra_i sem pinta
+
+          var letra_i = new THREE.Shape();
+
+          letra_i.moveTo(x+220,y+100);
+          letra_i.lineTo(x+210, y+115);
+          letra_i.quadraticCurveTo(x+193, y+100, x+198, y+80);
+          letra_i.lineTo(x+198, y+20);
+          letra_i.quadraticCurveTo(x+193, y+5, x+189,y+8);
+          letra_i.lineTo(x+203, y);
+          letra_i.quadraticCurveTo(x+213, y+2, x+213,y+20);
+          letra_i.lineTo(x+213,y+85);
+          letra_i.quadraticCurveTo(x+209, y+90, x+220, y+100);
+
+
+          var extrude2 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+          var geometry2 = new THREE.ExtrudeBufferGeometry(letra_i,extrude2);
+
+          var material2 = new THREE.MeshPhongMaterial({color: 0x4169E1});
+
+          var mesh2 = new THREE.Mesh(geometry2, material2);
+
+          scene.add(mesh2);
+
+      //////letra_j
+
+        var letra_j = new THREE.Shape();
+
+        letra_j.moveTo(x+130,y+100);
+        letra_j.lineTo(x+105,y+113);
+        letra_j.lineTo(x+105, y-25);
+        letra_j.lineTo(x+120, y-25);
+        letra_j.quadraticCurveTo(x+116,y-10, x+118,y-5);
+        letra_j.lineTo(x+118,y+85);
+        letra_j.quadraticCurveTo(x+116, y+90, x+130, y+100);
+
+
+        var extrude3 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+        var geometry3 = new THREE.ExtrudeBufferGeometry(letra_j,extrude3);
+
+        var material3 = new THREE.MeshPhongMaterial({color: 0x6495ED});
+
+        var mesh3 = new THREE.Mesh(geometry3, material3);
+
+        scene.add(mesh3);
+
+
+      /////////letra_a
+
+        var letra_a = new THREE.Shape();
+
+        letra_a.moveTo(x,y+20);
+        letra_a.lineTo(x+17, y+5);
+        letra_a.quadraticCurveTo(x+100, y+40, x, y+75);
+        letra_a.lineTo(x, y+85);
+        letra_a.lineTo(x+35, y+97);
+        letra_a.lineTo(x+47, y+80);
+        letra_a.lineTo(x+53, y+84);
+        letra_a.lineTo(x+50, y+90);
+        letra_a.quadraticCurveTo(x+35,y+113,x+15,y+113);
+        letra_a.lineTo(x-20,y+100);
+        letra_a.lineTo(x-12, y+90);
+        letra_a.lineTo(x-12, y+20);
+        letra_a.quadraticCurveTo(x-17, y+5, x-21, y+8);
+        letra_a.lineTo(x-13, y);
+        letra_a.quadraticCurveTo(x-3, y+2, x, y+20);
+        letra_a.moveTo(x,y+26);
+        letra_a.lineTo(x,y+67);
+        letra_a.quadraticCurveTo(x+70, y+30, x, y+26);
+
+
+        var extrude4 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+        var geometry4 = new THREE.ExtrudeBufferGeometry(letra_a,extrude4);
+
+        var material4 = new THREE.MeshPhongMaterial({color: 0x1E90FF});
+
+        var mesh4 = new THREE.Mesh(geometry4, material4);
+
+        scene.add(mesh4);
+
+
+        //////letra_i_2
+
+        var letra_i_2 = new THREE.Shape();
+
+        letra_i_2.moveTo(x-70,y+100);
+        letra_i_2.lineTo(x-80, y+115);
+        letra_i_2.quadraticCurveTo(x-97, y+100, x-92, y+80);
+        letra_i_2.lineTo(x-92, y+20);
+        letra_i_2.quadraticCurveTo(x-97, y+5, x-101,y+8);
+        letra_i_2.lineTo(x-87, y);
+        letra_i_2.quadraticCurveTo(x-77, y+2, x-77,y+20);
+        letra_i_2.lineTo(x-77,y+85);
+        letra_i_2.quadraticCurveTo(x-81, y+90, x-70, y+100);
+
+
+        var extrude5 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+        var geometry5 = new THREE.ExtrudeBufferGeometry(letra_i_2,extrude5);
+
+        var material5 = new THREE.MeshPhongMaterial({color: 0x00BFFF});
+
+        var mesh5 = new THREE.Mesh(geometry5, material5);
+
+        scene.add(mesh5);
+
+
+        //////letra_s
+
+        var letra_s = new THREE.Shape();
+
+        letra_s.moveTo(x-180,y+110);
+        letra_s.lineTo(x-210,y+95);
+        letra_s.lineTo(x-200, y+80);
+        letra_s.lineTo(x-170,y+96);
+        letra_s.bezierCurveTo(x-140, y+65, x-265, y+25, x-170, y);
+        letra_s.lineTo(x-145,y+10);
+        letra_s.lineTo(x-155, y+25);
+        letra_s.lineTo(x-175, y+13);
+        letra_s.bezierCurveTo( x-230, y+25, x-90, y+70, x-180, y+110);
+
+
+        var extrude6 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+        var geometry6 = new THREE.ExtrudeBufferGeometry(letra_s,extrude6);
+
+        var material6 = new THREE.MeshPhongMaterial({color: 0x87CEFA});
+
+        var mesh6 = new THREE.Mesh(geometry6, material6);
+
+        scene.add(mesh6);
+
+
+      ////////completa ponto i
+
+
+        var ponto1 = new THREE.Shape();
+
+
+        ponto1.moveTo(x+220, y+148);
+        ponto1.lineTo(x+218, y+138);
+        ponto1.quadraticCurveTo(x+206, y+144, x+199, y+142);
+        ponto1.lineTo(x+202, y+158);
+        ponto1.quadraticCurveTo(x+210,y+158,x+220, y+148);
+
+
+        var extrude7 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+        var geometry7 = new THREE.ExtrudeBufferGeometry(ponto1,extrude7);
+
+        var material7 = new THREE.MeshPhongMaterial({color: 0x4169E1});
+
+        var mesh7 = new THREE.Mesh(geometry7, material7);
+
+        scene.add(mesh7);
+
+
+        ////////completa ponto j
+
+
+          var ponto2 = new THREE.Shape();
+
+          ponto2.moveTo(x+130, y+148);
+          ponto2.lineTo(x+128, y+138);
+          ponto2.quadraticCurveTo(x+116, y+144, x+109, y+142);
+          ponto2.lineTo(x+112, y+158);
+          ponto2.quadraticCurveTo(x+120,y+158,x+130, y+148);
+
+
+
+          var extrude8 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+          var geometry8 = new THREE.ExtrudeBufferGeometry(ponto2,extrude8);
+
+          var material8 = new THREE.MeshPhongMaterial({color: 0x6495ED});
+
+          var mesh8 = new THREE.Mesh(geometry8, material8);
+
+          scene.add(mesh8);
+
+
+
+        ////////completa ponto segundo i
+
+
+          var ponto3 = new THREE.Shape();
+
+          ponto3.moveTo(x-70, y+148);
+          ponto3.lineTo(x-72, y+138);
+          ponto3.quadraticCurveTo(x-84, y+144, x-91, y+142);
+          ponto3.lineTo(x-88, y+158);
+          ponto3.quadraticCurveTo(x-80,y+158,x-70, y+148);
+
+
+          var extrude9 = {amount: 0, bevelSegments: 3, steps:1, bevelSize: 0.5, bevelTickness: 3, bevelSegments: 1};
+
+          var geometry9 = new THREE.ExtrudeBufferGeometry(ponto3,extrude9);
+
+          var material9 = new THREE.MeshPhongMaterial({color: 0x00BFFF});
+
+          var mesh9 = new THREE.Mesh(geometry9, material9);
+
+          scene.add(mesh9);
+
+      //-----------------------------------------------------
+      ////Para A
+          mesh.position.x = 200;
+          mesh.position.y = 200;
+
+      ////Para l
+          mesh1.position.y = -300;
+
+      ////Para i
+          mesh2.position.x = -400;
+          mesh2.position.y = -400;
+          mesh7.position.x = -400;
+          mesh7.position.y = -400;
+
+      ////Para j
+          mesh3.position.y = 400;
+          mesh8.position.y = 400;
+
+      ////Para a
+          mesh4.position.x = -200;
+          mesh4.position.y = -200;
+
+      ////Para segundo i
+          mesh5.position.x = 300;
+          mesh5.position.y = 300;
+          mesh9.position.x = 300;
+          mesh9.position.y = 300;
+
+      ////Para s
+          mesh6.position.x = -200;
+          mesh6.position.y = 200;
+
+
+    		var render = function()
+    		{
+    			renderer.render(scene, camera);
+    		};
+
+    		var Loop = function()
+    		{
+    			render();
+
+        if(mesh.position.x >= 0 || mesh.position.y >= 0){
+
+          mesh.position.x -= 2;
+          mesh.position.y -= 2;
+        }
+
+        if(mesh1.position.y <= 0){
+
+          mesh1.position.y += 3;
+        }
+
+        if(mesh2.position.x <= 0 || mesh2.position.y <= 0 || mesh7.position.x <= 0 || mesh7.position.y <= 0 ){
+
+          mesh2.position.x += 4;
+          mesh2.position.y += 4;
+          mesh7.position.x += 4;
+          mesh7.position.y += 4;
+
+        }
+
+        if(mesh3.position.y >= 0 || mesh8.position.y >=0){
+
+          mesh3.position.y -= 4;
+          mesh8.position.y -= 4;
+        }
+
+        if(mesh4.position.x <= 0 || mesh4.position.y <= 0){
+
+          mesh4.position.x += 2;
+          mesh4.position.y += 2;
+        }
+
+        if(mesh5.position.x >= 0 || mesh5.position.y >= 0 || mesh9.position.x >= 0 || mesh9.position.y >= 0 ){
+
+          mesh5.position.x -= 3;
+          mesh5.position.y -= 3;
+          mesh9.position.x -= 3;
+          mesh9.position.y -= 3;
+
+        }
+
+        if(mesh6.position.x <= 0 || mesh6.position.y >= 0){
+
+          mesh6.position.x += 2;
+          mesh6.position.y -= 2;
+        }
+
+        requestAnimationFrame(Loop);
+
+  		};
+
+  		Loop();
+
+		</script>
+	</body>
+</html>
